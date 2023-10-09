@@ -1,16 +1,17 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.graphics.Color;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class JuegoActivity extends AppCompatActivity implements View.OnClickListener{
-
 
     public static String question[] ={
             "¿De qué color fue el primer Hulk?",
@@ -18,21 +19,26 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
             "¿Cómo se llama la digievolución de Gabumon?",
             "'Nada es verdad...' ",
             "¿Quién de las siguientes fotografias es Power de Chainsaw Man Chainsaw?"
+
     };
+
 
     public static String choices[] []={
             {"Gris","Verde","Rojo","Blanco"},
             {"42","120","108","55"},
             {"Greymon","Súper Gabumon","Angemon","Garurumon"},
-            {"salvo algunas cosas'","hasta que se hace realidad'","aunque en realidad si'","todo esta permitido'"}
+            {"salvo algunas cosas'","hasta que se hace realidad'","aunque en realidad si'","todo esta permitido'"},
+            {"img1","img2","img3","img4"}
     };
 
     public static String correct[] ={
             "Gris",
             "108",
             "Garurumon",
-            "todo esta permitido'"
+            "todo esta permitido'",
+            "img1"
     };
+
     private int score=0;
     TextView questionTextView;
     Button ansA, ansB, ansC, ansD;
@@ -73,7 +79,10 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
         Button clickedButton = (Button) view;
         if(clickedButton.getId()==R.id.submit_btn){
             if(selectedAnswer.equals(correct[currentQuestionIndex])){
-                score++;
+                score+=3;
+            }
+            else{
+                score-=2;
             }
             currentQuestionIndex++;
             loadNewQuestion();
@@ -90,16 +99,25 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
 
     void loadNewQuestion(){
 
-        if(currentQuestionIndex == totalQuestion ){
-            finishQuiz();
-            return;
-        }
+        System.out.println(currentQuestionIndex+"   "+totalQuestion);
 
-        questionTextView.setText(question[currentQuestionIndex]);
-        ansA.setText(choices[currentQuestionIndex][0]);
-        ansB.setText(choices[currentQuestionIndex][1]);
-        ansC.setText(choices[currentQuestionIndex][2]);
-        ansD.setText(choices[currentQuestionIndex][3]);
+        if(currentQuestionIndex == totalQuestion ){
+            endGame();
+        }
+        else{
+            questionTextView.setText(question[currentQuestionIndex]);
+            ansA.setText(choices[currentQuestionIndex][0]);
+            ansB.setText(choices[currentQuestionIndex][1]);
+            ansC.setText(choices[currentQuestionIndex][2]);
+            ansD.setText(choices[currentQuestionIndex][3]);
+
+            /*if(currentQuestionIndex==4){
+                ansA.setBackground(this.getResources().getDrawable(R.mipmap.img1));
+                ansB.setBackground(this.getResources().getDrawable(R.mipmap.img2));
+                ansC.setBackground(this.getResources().getDrawable(R.mipmap.img3));
+                ansB.setBackground(this.getResources().getDrawable(R.mipmap.img4));
+            }*/
+        }
 
     }
 
@@ -115,7 +133,7 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
 
     private void endGame(){
 
-        Intent intent = new Intent(getApplicationContext(), JuegoActivity.class);
+        Intent intent = new Intent(getApplicationContext(), EndActivity.class);
         intent.putExtra("puntos",score);   //para pasar los puntos de un activity a otro
 
         startActivity(intent);

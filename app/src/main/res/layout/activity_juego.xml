@@ -38,7 +38,8 @@
             android:layout_margin="5dp"
             android:backgroundTint="@color/white"
             android:text="Ans A"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:drawableLeft=""/>
 
         <Button
             android:id="@+id/ans_B"

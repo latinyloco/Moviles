@@ -3,14 +3,17 @@ package com.example.myapplication;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button bJugar, bInfo;
+    private Button bJugar;
+    private ImageButton bInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         acciones();
     }
 
+    @SuppressLint("WrongViewCast")
     private void instancias() {
         bJugar = findViewById(R.id.botonJuego);
         bInfo = findViewById(R.id.botonInfo);
