@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Esta es una aplicacion de juego tipo trivial." +
                     " Se te van a realizar varias preguntas, si las aciertas se te sumaran puntos," +
-                    " si las fallas te restaran. Espero que te diviertas!!")
+                    " si las fallas te restaran. ¡¡Espero que te diviertas!!")
                     .setTitle("Información")
                     .setCancelable(false).setNeutralButton("Aceptar",
                             (dialog, id) -> {
