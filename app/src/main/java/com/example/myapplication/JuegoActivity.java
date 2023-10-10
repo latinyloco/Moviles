@@ -45,6 +45,8 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
     int currentQuestionIndex = 0;
     String selectedAnswer = "";
 
+    Button selectedAnswerButton;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego);
@@ -77,9 +79,11 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
         if(clickedButton.getId()==R.id.submit_btn){
             if(selectedAnswer.equals(correct[currentQuestionIndex])){
                 score+=3;
+                selectedAnswerButton.setBackgroundColor(Color.GREEN);
             }
             else{
                 score-=2;
+                showCorrect(selectedAnswerButton);
             }
             currentQuestionIndex++;
             loadNewQuestion();
@@ -88,10 +92,24 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
         }else{
             //choices button clicked
             selectedAnswer  = clickedButton.getText().toString();
+            selectedAnswerButton = clickedButton;
             clickedButton.setBackgroundColor(Color.MAGENTA);
-
         }
 
+    }
+    void showCorrect(Button button){
+        button.setBackgroundColor(Color.RED);
+
+        if (ansA.getText().toString().equals(correct[currentQuestionIndex])){
+            ansA.setBackgroundColor(Color.GREEN);
+        }
+        else if (ansB.getText().toString().equals(correct[currentQuestionIndex])){
+            ansB.setBackgroundColor(Color.GREEN);
+        }else if (ansC.getText().toString().equals(correct[currentQuestionIndex])){
+            ansC.setBackgroundColor(Color.GREEN);
+        }else {
+            ansD.setBackgroundColor(Color.GREEN);
+        }
     }
 
     void loadNewQuestion(){
