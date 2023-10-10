@@ -18,7 +18,6 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
             "¿Cada cuántos minutos tenían que pulsar la tecla en LOST?",
             "¿Cómo se llama la digievolución de Gabumon?",
             "'Nada es verdad...' ",
-            "¿Quién de las siguientes fotografias es Power de Chainsaw Man Chainsaw?"
 
     };
 
@@ -124,7 +123,7 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
 
     private void imgGame(){
 
-        Intent intent = new Intent(getApplicationContext(), EndActivity.class);
+        Intent intent = new Intent(getApplicationContext(), ImageActivity.class);
         intent.putExtra("puntos",score);   //para pasar los puntos de un activity a otro
 
         startActivity(intent);

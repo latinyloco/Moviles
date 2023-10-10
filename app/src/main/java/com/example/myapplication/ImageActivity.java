@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class ImageActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -48,7 +49,8 @@ public class ImageActivity extends AppCompatActivity implements View.OnClickList
         imgD.setBackgroundColor(Color.WHITE);
 
         Button clickedButton = (Button) view;
-        if(clickedButton.getId()==R.id.submit_btn){
+        if(clickedButton.getId() ==R.id.submit_btn){
+
             if(selectedAnswer == R.id.ans_A){
                 score+=3;
             }
