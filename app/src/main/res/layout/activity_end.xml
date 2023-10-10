@@ -39,6 +39,7 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/textscore"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,4 +54,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/top_background"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-133dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

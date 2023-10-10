@@ -28,7 +28,6 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
             {"42","120","108","55"},
             {"Greymon","Súper Gabumon","Angemon","Garurumon"},
             {"salvo algunas cosas'","hasta que se hace realidad'","aunque en realidad si'","todo esta permitido'"},
-            {"img1","img2","img3","img4"}
     };
 
     public static String correct[] ={
@@ -36,7 +35,6 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
             "108",
             "Garurumon",
             "todo esta permitido'",
-            "img1"
     };
 
     private int score=0;
@@ -102,7 +100,7 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
         System.out.println(currentQuestionIndex+"   "+totalQuestion);
 
         if(currentQuestionIndex == totalQuestion ){
-            endGame();
+            imgGame();
         }
         else{
             questionTextView.setText(question[currentQuestionIndex]);
@@ -110,13 +108,6 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
             ansB.setText(choices[currentQuestionIndex][1]);
             ansC.setText(choices[currentQuestionIndex][2]);
             ansD.setText(choices[currentQuestionIndex][3]);
-
-            /*if(currentQuestionIndex==4){
-                ansA.setBackground(this.getResources().getDrawable(R.mipmap.img1));
-                ansB.setBackground(this.getResources().getDrawable(R.mipmap.img2));
-                ansC.setBackground(this.getResources().getDrawable(R.mipmap.img3));
-                ansB.setBackground(this.getResources().getDrawable(R.mipmap.img4));
-            }*/
         }
 
     }
@@ -131,7 +122,7 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-    private void endGame(){
+    private void imgGame(){
 
         Intent intent = new Intent(getApplicationContext(), EndActivity.class);
         intent.putExtra("puntos",score);   //para pasar los puntos de un activity a otro
