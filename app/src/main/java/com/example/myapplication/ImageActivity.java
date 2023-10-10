@@ -41,6 +41,10 @@ public class ImageActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onClick(View view) {
                 correct = true;
+                imgB.setBackgroundColor(Color.WHITE);
+                imgC.setBackgroundColor(Color.WHITE);
+                imgD.setBackgroundColor(Color.WHITE);
+                view.setBackgroundColor(Color.MAGENTA);
             }
         });
 
@@ -48,6 +52,10 @@ public class ImageActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onClick(View view) {
                 correct = false;
+                imgA.setBackgroundColor(Color.WHITE);
+                imgC.setBackgroundColor(Color.WHITE);
+                imgD.setBackgroundColor(Color.WHITE);
+                view.setBackgroundColor(Color.MAGENTA);
             }
         });
 
@@ -55,6 +63,10 @@ public class ImageActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onClick(View view) {
                 correct = false;
+                imgB.setBackgroundColor(Color.WHITE);
+                imgC.setBackgroundColor(Color.WHITE);
+                imgA.setBackgroundColor(Color.WHITE);
+                view.setBackgroundColor(Color.MAGENTA);
             }
         });
 
@@ -62,6 +74,10 @@ public class ImageActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onClick(View view) {
                 correct = false;
+                imgB.setBackgroundColor(Color.WHITE);
+                imgC.setBackgroundColor(Color.WHITE);
+                imgA.setBackgroundColor(Color.WHITE);
+                view.setBackgroundColor(Color.MAGENTA);
             }
         });
 
