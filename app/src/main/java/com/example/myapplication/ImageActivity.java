@@ -19,6 +19,8 @@ public class ImageActivity extends AppCompatActivity implements View.OnClickList
 
     int score;
 
+    boolean correct;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,42 +33,50 @@ public class ImageActivity extends AppCompatActivity implements View.OnClickList
         imgD = findViewById(R.id.img_D);
         submitBtn = findViewById(R.id.submit_btn);
 
-        imgA.setOnClickListener(this);
-        imgB.setOnClickListener(this);
-        imgC.setOnClickListener(this);
-        imgD.setOnClickListener(this);
-        submitBtn.setOnClickListener(this);
+        correct = false;
+
         score = this.getIntent().getExtras().getInt("puntos");
 
+        imgA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                correct = true;
+            }
+        });
+
+        imgB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                correct = false;
+            }
+        });
+
+        imgC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                correct = false;
+            }
+        });
+
+        imgD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                correct = false;
+            }
+        });
+
+        submitBtn.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-
-        imgA.setBackgroundColor(Color.WHITE);
-        imgB.setBackgroundColor(Color.WHITE);
-        imgC.setBackgroundColor(Color.WHITE);
-        imgD.setBackgroundColor(Color.WHITE);
-
-        Button clickedButton = (Button) view;
-        if(clickedButton.getId() ==R.id.submit_btn){
-
-            if(selectedAnswer == R.id.ans_A){
-                score+=3;
-            }
-            else{
-                score-=2;
-            }
-            endGame();
-
-        }else{
-            //choices button clicked
-
-            selectedAnswer  = view.getId();
-            clickedButton.setBackgroundColor(Color.MAGENTA);
-
+        if(correct){
+            score+=3;
         }
-
+        else{
+            score-=2;
+        }
+        endGame();
     }
 
     private void endGame(){
