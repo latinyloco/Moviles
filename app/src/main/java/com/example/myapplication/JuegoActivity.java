@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -40,6 +41,7 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
     TextView questionTextView;
     Button ansA, ansB, ansC, ansD;
     Button submitBtn;
+    ImageButton volver;
 
     int totalQuestion = question.length;
     int currentQuestionIndex = 0;
@@ -57,12 +59,14 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
         ansC = findViewById(R.id.ans_C);
         ansD = findViewById(R.id.ans_D);
         submitBtn = findViewById(R.id.submit_btn);
+        volver = findViewById(R.id.imageback);
 
         ansA.setOnClickListener(this);
         ansB.setOnClickListener(this);
         ansC.setOnClickListener(this);
         ansD.setOnClickListener(this);
         submitBtn.setOnClickListener(this);
+        volver.setOnClickListener(this);
 
         loadNewQuestion();
     }
@@ -76,7 +80,12 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
         ansD.setBackgroundColor(Color.WHITE);
 
         Button clickedButton = (Button) view;
-        if(clickedButton.getId()==R.id.submit_btn){
+        if (view.getId() == R.id.volver){
+            score=0;
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
+        }
+        else if(clickedButton.getId()==R.id.submit_btn){
             if(selectedAnswer.equals(correct[currentQuestionIndex])){
                 score+=3;
                 selectedAnswerButton.setBackgroundColor(Color.GREEN);
@@ -88,9 +97,8 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
                 errorMessage();
             }
             currentQuestionIndex++;
+            System.out.println(currentQuestionIndex);
             loadNewQuestion();
-
-
         }else{
             //choices button clicked
             selectedAnswer  = clickedButton.getText().toString();
@@ -115,11 +123,11 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
     }
 
     void errorMessage(){
-
+        Toast.makeText(this, "Incorrecto", Toast.LENGTH_SHORT).show();
     }
 
     void correctMessage(){
-        
+        Toast.makeText(this, "Correcto", Toast.LENGTH_SHORT).show();
     }
 
     void loadNewQuestion(){

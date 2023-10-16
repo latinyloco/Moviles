@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class EndActivity extends AppCompatActivity implements View.OnClickListener {
@@ -29,6 +30,38 @@ public class EndActivity extends AppCompatActivity implements View.OnClickListen
         score = this.getIntent().getExtras().getInt("puntos");     //recoger datos que vienen de otra activity
         textscore = findViewById(R.id.textscore);
         textscore.setText(String.valueOf(score));
+
+        if (score < 7.5){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Has perdido, intentalo de nuevo")
+                    .setTitle("Derrota")
+                    .setCancelable(false).setNeutralButton("Aceptar",
+                            (dialog, id) -> {
+                                dialog.cancel();
+                            });
+            AlertDialog alert = builder.create();
+            alert.show();
+        } else if (score >= 7.5 && score < 15) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Felicidades, has ganado")
+                    .setTitle("Victoria")
+                    .setCancelable(false).setNeutralButton("Aceptar",
+                            (dialog, id) -> {
+                                dialog.cancel();
+                            });
+            AlertDialog alert = builder.create();
+            alert.show();
+        } else if (score == 15) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Enhorabuena!!, has conseguido una puntuacion perfecta")
+                    .setTitle("Flawless Victory")
+                    .setCancelable(false).setNeutralButton("Aceptar",
+                            (dialog, id) -> {
+                                dialog.cancel();
+                            });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
 
         System.out.println("ender");
 
