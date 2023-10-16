@@ -4,7 +4,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,12 +18,12 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button bJugar, bEncuesta, btnEnviar;
-
-    private RadioButton ans1;
-    RadioGroup rg;
+    private Button bJugar, bEncuesta;
 
     private ImageButton bInfo;
+
+    public MainActivity() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +37,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void instancias() {
         bJugar = findViewById(R.id.botonJuego);
         bInfo = findViewById(R.id.botonInfo);
-        btnEnviar = findViewById(R.id.btnEnviar);
 
         bEncuesta = findViewById(R.id.btnEncuestas);
-        rg = findViewById(R.id.ansEncuesta);
     }
 
     private void acciones() {
@@ -49,6 +49,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+
+
+
         if (v.getId() == R.id.botonJuego) {
             Intent intent = new Intent(getApplicationContext(), JuegoActivity.class);
             startActivity(intent);
@@ -69,39 +72,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         } else if(v.getId() == R.id.btnEncuestas){
-              //crear la vista inflada
-            LayoutInflater inflador = getLayoutInflater();
-            View view = inflador.inflate(R.layout.dialog_encuesta,null);
 
-              //construir el diálogo
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setView(view);
-            builder.create().show();
-
-              //pop up al enviar
-            if (v.getId() == R.id.btnEnviar){
-
-                System.out.println("hola");
-
-                int a = rg.getCheckedRadioButtonId();
-                ans1 = findViewById(a);
-
-                builder.create().hide();
-
-                AlertDialog.Builder builderpop = new AlertDialog.Builder(this);
-                builderpop.setMessage("Has seleccionado: "+ans1.getText())
-                        .setTitle("Gracias por haber seleccionado una respuesta")
-                        .setCancelable(false).setNeutralButton("Aceptar",
-                                (dialog, id) -> {
-                                    dialog.cancel();
-                                });
-                AlertDialog alert = builderpop.create();
-                alert.show();
-
-            }
-
+            showCustomDialog();
 
         }
 
+    }
+
+    private void showCustomDialog() {
+        final Dialog dialog = new Dialog(this);
+        dialog.setCancelable(true);         // si se clica fuera, se sale
+        dialog.setContentView(R.layout.dialog_encuesta);
+
+        final RadioGroup botonGrupo = dialog.findViewById(R.id.ansEncuesta);
+        Button btnEnviar = dialog.findViewById(R.id.btnEnviar);
+
+        btnEnviar.setOnClickListener(v -> {
+            int selectedId = botonGrupo.getCheckedRadioButtonId();
+            if (selectedId != -1) {
+                RadioButton bontonSelecionado = dialog.findViewById(selectedId);
+                String texto = bontonSelecionado.getText().toString();
+                dialog.dismiss();
+                Toast.makeText(this, "Has selecionado: "+texto, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        dialog.show();
     }
 }
