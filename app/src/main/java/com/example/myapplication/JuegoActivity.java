@@ -80,10 +80,12 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
             if(selectedAnswer.equals(correct[currentQuestionIndex])){
                 score+=3;
                 selectedAnswerButton.setBackgroundColor(Color.GREEN);
+                correctMessage();
             }
             else{
                 score-=2;
                 showCorrect(selectedAnswerButton);
+                errorMessage();
             }
             currentQuestionIndex++;
             loadNewQuestion();
@@ -110,6 +112,14 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
         }else {
             ansD.setBackgroundColor(Color.GREEN);
         }
+    }
+
+    void errorMessage(){
+
+    }
+
+    void correctMessage(){
+        
     }
 
     void loadNewQuestion(){
