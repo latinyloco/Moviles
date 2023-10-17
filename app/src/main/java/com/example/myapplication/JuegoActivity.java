@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class JuegoActivity extends AppCompatActivity implements View.OnClickListener{
@@ -41,13 +42,12 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
     TextView questionTextView;
     Button ansA, ansB, ansC, ansD;
     Button submitBtn;
-    ImageButton volver;
 
     int totalQuestion = question.length;
     int currentQuestionIndex = 0;
     String selectedAnswer = "";
 
-    Button selectedAnswerButton;
+    Button selectedAnswerButton = null;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,14 +59,12 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
         ansC = findViewById(R.id.ans_C);
         ansD = findViewById(R.id.ans_D);
         submitBtn = findViewById(R.id.submit_btn);
-        volver = findViewById(R.id.imageback);
 
         ansA.setOnClickListener(this);
         ansB.setOnClickListener(this);
         ansC.setOnClickListener(this);
         ansD.setOnClickListener(this);
         submitBtn.setOnClickListener(this);
-        volver.setOnClickListener(this);
 
         loadNewQuestion();
     }
@@ -80,24 +78,22 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
         ansD.setBackgroundColor(Color.WHITE);
 
         Button clickedButton = (Button) view;
-        if (view.getId() == R.id.volver){
-            score=0;
-            Intent intent = new Intent(this,MainActivity.class);
-            startActivity(intent);
-        }
-        else if(clickedButton.getId()==R.id.submit_btn){
-            if(selectedAnswer.equals(correct[currentQuestionIndex])){
-                score+=3;
-                selectedAnswerButton.setBackgroundColor(Color.GREEN);
-                correctMessage();
-            }
-            else{
-                score-=2;
-                showCorrect(selectedAnswerButton);
-                errorMessage();
+        if(clickedButton.getId()==R.id.submit_btn){
+            if (selectedAnswerButton!=null) {
+                if (selectedAnswer.equals(correct[currentQuestionIndex])) {
+                    score += 3;
+                    selectedAnswerButton.setBackgroundColor(Color.GREEN);
+                    correctMessage();
+
+                } else {
+                    score -= 2;
+                    showCorrect(selectedAnswerButton);
+                    errorMessage();
+                }
             }
             currentQuestionIndex++;
             System.out.println(currentQuestionIndex);
+            selectedAnswerButton = null;
             loadNewQuestion();
         }else{
             //choices button clicked
@@ -105,11 +101,9 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
             selectedAnswerButton = clickedButton;
             clickedButton.setBackgroundColor(Color.MAGENTA);
         }
-
     }
     void showCorrect(Button button){
         button.setBackgroundColor(Color.RED);
-
         if (ansA.getText().toString().equals(correct[currentQuestionIndex])){
             ansA.setBackgroundColor(Color.GREEN);
         }
@@ -123,7 +117,19 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
     }
 
     void errorMessage(){
-        Toast.makeText(this, "Incorrecto", Toast.LENGTH_SHORT).show();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Has fallado")
+                .setTitle("Incorrecto")
+                .setCancelable(false)
+                .setPositiveButton("Continuar", (dialog, which) -> {
+                })
+                .setNegativeButton("Repetir desde el inicio", (dialog, which) -> {
+                    Intent i = new Intent(this, MainActivity.class);
+                    startActivity(i);
+                });
+
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     void correctMessage(){
@@ -131,7 +137,7 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
     }
 
     void loadNewQuestion(){
-
+        selectedAnswer = "";
         System.out.println(currentQuestionIndex+"   "+totalQuestion);
 
         if(currentQuestionIndex == totalQuestion ){

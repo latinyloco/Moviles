@@ -78,11 +78,4 @@
         android:layout_marginTop="40dp"
         android:text="Continuar" />
 
-    <ImageButton
-        android:id="@+id/imageback"
-        android:layout_width="284dp"
-        android:layout_height="130dp"
-        android:background="@android:color/transparent"
-        app:srcCompat="@mipmap/volver" />
-
 </RelativeLayout>
