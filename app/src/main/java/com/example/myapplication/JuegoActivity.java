@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.graphics.Color;
 import android.widget.Button;
@@ -94,7 +95,14 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
             currentQuestionIndex++;
             System.out.println(currentQuestionIndex);
             selectedAnswerButton = null;
-            loadNewQuestion();
+
+            // Agregar una pausa de 3 segundos antes de cargar una nueva pregunta
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    loadNewQuestion();
+                }
+            }, 3000); // 3000 milisegundos (3 segundos)
         }else{
             //choices button clicked
             selectedAnswer  = clickedButton.getText().toString();
