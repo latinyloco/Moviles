@@ -73,11 +73,6 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
 
-        ansA.setBackgroundColor(Color.WHITE);
-        ansB.setBackgroundColor(Color.WHITE);
-        ansC.setBackgroundColor(Color.WHITE);
-        ansD.setBackgroundColor(Color.WHITE);
-
         Button clickedButton = (Button) view;
         if(clickedButton.getId()==R.id.submit_btn){
             if (selectedAnswerButton!=null) {
@@ -93,16 +88,19 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
                 }
             }
             currentQuestionIndex++;
-            System.out.println(currentQuestionIndex);
             selectedAnswerButton = null;
 
-            // Agregar una pausa de 3 segundos antes de cargar una nueva pregunta
+            // Agregar una pausa antes de cargar una nueva pregunta
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    ansA.setBackgroundColor(Color.WHITE);
+                    ansB.setBackgroundColor(Color.WHITE);
+                    ansC.setBackgroundColor(Color.WHITE);
+                    ansD.setBackgroundColor(Color.WHITE);
                     loadNewQuestion();
                 }
-            }, 3000); // 3000 milisegundos (3 segundos)
+            }, 500);
         }else{
             //choices button clicked
             selectedAnswer  = clickedButton.getText().toString();
@@ -146,7 +144,6 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
 
     void loadNewQuestion(){
         selectedAnswer = "";
-        System.out.println(currentQuestionIndex+"   "+totalQuestion);
 
         if(currentQuestionIndex == totalQuestion ){
             imgGame();
@@ -160,16 +157,6 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
         }
 
     }
-
-    void finishQuiz(){
-        String passStatus = "";
-        if(score > totalQuestion*0.60){
-            passStatus = "Passed";
-        }else{
-            passStatus = "Failed";
-        }
-    }
-
 
     private void imgGame(){
 

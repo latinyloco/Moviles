@@ -13,9 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class EndActivity extends AppCompatActivity implements View.OnClickListener {
 
-    //En esta pantalla se puede mostrar la puntuación de una forma bonita y un boton de volver a jugar
-    // Esta pantalla se inicara una vez acabe el juego, con un intent al que se le pasaran los resultados
-
     private TextView textscore;
 
     private int score;
@@ -62,8 +59,6 @@ public class EndActivity extends AppCompatActivity implements View.OnClickListen
             AlertDialog alert = builder.create();
             alert.show();
         }
-
-        System.out.println("ender");
 
         vol = findViewById(R.id.volver);
         judn = findViewById(R.id.JugarDeNuevo);
