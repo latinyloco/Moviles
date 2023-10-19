@@ -74,13 +74,20 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
 
     public void onClick(View view) {
 
+        ansA.setBackgroundColor(Color.WHITE);
+        ansB.setBackgroundColor(Color.WHITE);
+        ansC.setBackgroundColor(Color.WHITE);
+        ansD.setBackgroundColor(Color.WHITE);
+
         Button clickedButton = (Button) view;
         if(clickedButton.getId()==R.id.submit_btn){
             if (selectedAnswerButton!=null) {
                 if (selectedAnswer.equals(correct[currentQuestionIndex])) {
-                    score += 3;
-                    selectedAnswerButton.setBackgroundColor(Color.GREEN);
-                    correctMessage();
+                    if(currentQuestionIndex+1 < totalQuestion) {
+                        score += 3;
+                        selectedAnswerButton.setBackgroundColor(Color.GREEN);
+                        correctMessage();
+                    }
 
                 } else {
                     if(currentQuestionIndex+1 < totalQuestion){
