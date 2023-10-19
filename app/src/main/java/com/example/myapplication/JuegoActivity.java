@@ -48,7 +48,9 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
     int currentQuestionIndex = 0;
     String selectedAnswer = "";
 
-    Button selectedAnswerButton = null;
+    private Button selectedAnswerButton = null;
+    private Button lastSelectedAnswerButton = null;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +72,6 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
         loadNewQuestion();
     }
 
-    @Override
     public void onClick(View view) {
 
         Button clickedButton = (Button) view;
@@ -82,9 +83,14 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
                     correctMessage();
 
                 } else {
-                    score -= 2;
-                    showCorrect(selectedAnswerButton);
-                    errorMessage();
+                    if(currentQuestionIndex+1 < totalQuestion){
+                        score -= 2;
+                        showCorrect(selectedAnswerButton);
+                        errorMessage();
+                    }else{
+                        lastSelectedAnswerButton = selectedAnswerButton;
+                    }
+
                 }
             }
             currentQuestionIndex++;
@@ -108,6 +114,31 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
             clickedButton.setBackgroundColor(Color.MAGENTA);
         }
     }
+
+    void errorMessage(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Has fallado")
+                .setTitle("Incorrecto")
+                .setCancelable(false)
+                .setPositiveButton("Continuar", (dialog, which) -> {
+                    if(currentQuestionIndex == totalQuestion ){
+                        imgGame();
+                    }
+                })
+                .setNegativeButton("Repetir desde el inicio", (dialog, which) -> {
+                    endQuestions();
+                });
+
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+
+    void correctMessage(){
+        Toast.makeText(this, "Correcto", Toast.LENGTH_SHORT).show();
+    }
+
+
     void showCorrect(Button button){
         button.setBackgroundColor(Color.RED);
         if (ansA.getText().toString().equals(correct[currentQuestionIndex])){
@@ -122,33 +153,15 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    void errorMessage(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Has fallado")
-                .setTitle("Incorrecto")
-                .setCancelable(false)
-                .setPositiveButton("Continuar", (dialog, which) -> {
-                })
-                .setNegativeButton("Repetir desde el inicio", (dialog, which) -> {
-                    Intent i = new Intent(this, MainActivity.class);
-                    startActivity(i);
-                });
-
-        AlertDialog alert = builder.create();
-        alert.show();
-    }
-
-    void correctMessage(){
-        Toast.makeText(this, "Correcto", Toast.LENGTH_SHORT).show();
-    }
 
     void loadNewQuestion(){
-        selectedAnswer = "";
 
-        if(currentQuestionIndex == totalQuestion ){
-            imgGame();
+        if(currentQuestionIndex == totalQuestion){
+            lastQuestion();
         }
-        else{
+
+        selectedAnswer = "";
+        if(currentQuestionIndex < totalQuestion){
             questionTextView.setText(question[currentQuestionIndex]);
             ansA.setText(choices[currentQuestionIndex][0]);
             ansB.setText(choices[currentQuestionIndex][1]);
@@ -158,12 +171,45 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+
+    private void lastQuestion(){
+        currentQuestionIndex--;
+        if (selectedAnswer.equals(correct[currentQuestionIndex])) {
+            score += 3;
+            correctMessage();
+            imgGame();
+
+        } else {
+            score -= 2;
+            showCorrect(lastSelectedAnswerButton);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Has fallado")
+                    .setTitle("Incorrecto")
+                    .setCancelable(false)
+                    .setPositiveButton("Continuar", (dialog, which) -> {
+                        imgGame();
+                    })
+                    .setNegativeButton("Repetir desde el inicio", (dialog, which) -> {
+                        endQuestions();
+                    });
+
+            AlertDialog alert = builder.create();
+            alert.show();
+
+        }}
+
     private void imgGame(){
 
         Intent intent = new Intent(getApplicationContext(), ImageActivity.class);
         intent.putExtra("puntos",score);   //para pasar los puntos de un activity a otro
 
         startActivity(intent);
+    }
+
+    private void endQuestions(){
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
     }
 
 }
