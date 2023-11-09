@@ -1,18 +1,18 @@
-package com.example.myapplication;
+package com.example.myapplication.Game;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.graphics.Color;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.myapplication.R;
 
 public class JuegoActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -50,11 +50,14 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
 
     private Button selectedAnswerButton = null;
     private Button lastSelectedAnswerButton = null;
+    private String name;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego);
+        name = this.getIntent().getExtras().getString("nombre");     //recoger datos que vienen de otra activity
+        Toast.makeText(JuegoActivity.this, name,Toast.LENGTH_SHORT).show();
 
         questionTextView = findViewById(R.id.question);
         ansA = findViewById(R.id.ans_A);
@@ -210,12 +213,15 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
 
         Intent intent = new Intent(getApplicationContext(), ImageActivity.class);
         intent.putExtra("puntos",score);   //para pasar los puntos de un activity a otro
+        intent.putExtra("nombre",name);
 
+        Toast.makeText(JuegoActivity.this, name,Toast.LENGTH_SHORT).show();
         startActivity(intent);
     }
 
     private void endQuestions(){
         Intent i = new Intent(this, MainActivity.class);
+        i.putExtra("nombre",name);
         startActivity(i);
     }
 

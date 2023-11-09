@@ -1,26 +1,28 @@
-package com.example.myapplication;
+package com.example.myapplication.Game;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.myapplication.Partidas.NombreActivity;
+import com.example.myapplication.Partidas.PartidasActivity;
+import com.example.myapplication.R;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button bJugar, bEncuesta;
-
-    private ImageButton bInfo;
+    private ImageView bPartidas;
+    private ImageView bInfo;
 
     public MainActivity() {
     }
@@ -33,27 +35,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         acciones();
     }
 
-    @SuppressLint("WrongViewCast")
+
+
     private void instancias() {
         bJugar = findViewById(R.id.botonJuego);
         bInfo = findViewById(R.id.botonInfo);
 
+        bPartidas = (ImageView) findViewById(R.id.listaPartidas);
         bEncuesta = findViewById(R.id.btnEncuestas);
     }
 
     private void acciones() {
         bJugar.setOnClickListener(this);
         bInfo.setOnClickListener(this);
+
+        bPartidas.setOnClickListener(this);
         bEncuesta.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
 
-
-
         if (v.getId() == R.id.botonJuego) {
-            Intent intent = new Intent(getApplicationContext(), JuegoActivity.class);
+            Intent intent = new Intent(getApplicationContext(), NombreActivity.class);
             startActivity(intent);
 
 
@@ -75,6 +79,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             showCustomDialog();
 
+        }else if(v.getId() == R.id.listaPartidas){
+            Intent intent = new Intent(getApplicationContext(), PartidasActivity.class);
+            startActivity(intent);
         }
 
     }

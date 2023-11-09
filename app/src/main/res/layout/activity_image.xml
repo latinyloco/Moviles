@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="#423E85"
     android:padding="24dp"
-    tools:context=".ImageActivity">
+    tools:context=".Game.ImageActivity">
 
 
 

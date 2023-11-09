@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Game;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.myapplication.Game.EndActivity;
+import com.example.myapplication.R;
+
 public class ImageActivity extends AppCompatActivity implements View.OnClickListener {
 
     LinearLayout imgA, imgB, imgC, imgD;
@@ -18,6 +21,7 @@ public class ImageActivity extends AppCompatActivity implements View.OnClickList
     int selectedAnswer;
 
     int score;
+    private String name;
 
     boolean correct;
 
@@ -36,6 +40,8 @@ public class ImageActivity extends AppCompatActivity implements View.OnClickList
         correct = false;
 
         score = this.getIntent().getExtras().getInt("puntos");
+        name = this.getIntent().getExtras().getString("nombre");
+        Toast.makeText(ImageActivity.this, score+" "+name,Toast.LENGTH_SHORT).show();
 
         imgA.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +105,7 @@ public class ImageActivity extends AppCompatActivity implements View.OnClickList
 
         Intent intent = new Intent(getApplicationContext(), EndActivity.class);
         intent.putExtra("puntos",score);   //para pasar los puntos de un activity a otro
+        intent.putExtra("nombre",name);
 
         startActivity(intent);
     }

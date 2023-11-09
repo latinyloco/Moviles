@@ -13,18 +13,36 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
-            android:name=".ImageActivity"
+            android:name=".DB.Partida"
             android:exported="false" />
         <activity
-            android:name=".EndActivity"
+            android:name=".DB.DbPartidas"
+            android:exported="false" />
+        <activity
+            android:name=".DB.DbHelper"
+            android:exported="false" />
+        <activity
+            android:name=".Partidas.AdapterPartidas"
+            android:exported="false" />
+        <activity
+            android:name=".Partidas.PartidasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Partidas.NombreActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Game.ImageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Game.EndActivity"
             android:exported="false"
             android:label="@string/title_activity_end"
             android:theme="@style/Theme.MyApplication" />
         <activity
-            android:name=".JuegoActivity"
+            android:name=".Game.JuegoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Game.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
