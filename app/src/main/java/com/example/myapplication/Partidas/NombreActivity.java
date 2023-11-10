@@ -37,7 +37,7 @@ public class NombreActivity extends AppCompatActivity implements View.OnClickLis
             nombre = findViewById(R.id.nombre);
             name = String.valueOf(nombre.getText());
 
-            if(name.equals("Nombre")){
+            if(name.equals("")){
                 Toast.makeText(NombreActivity.this, "Introduce tu nombre",Toast.LENGTH_SHORT).show();
             }else{
                 Intent intent = new Intent(getApplicationContext(), JuegoActivity.class);
