@@ -2,6 +2,7 @@ package com.example.myapplication.Partidas;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +20,8 @@ public class NombreActivity extends AppCompatActivity implements View.OnClickLis
     private EditText nombre;
     private String name;
 
+    private MediaPlayer soundPress;
+
 
     @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,7 @@ public class NombreActivity extends AppCompatActivity implements View.OnClickLis
         empezar = findViewById(R.id.empezar);
         empezar.setOnClickListener(this);
 
+        soundPress = MediaPlayer.create(this, R.raw.press);
     }
 
     @Override
@@ -36,6 +40,8 @@ public class NombreActivity extends AppCompatActivity implements View.OnClickLis
 
             nombre = findViewById(R.id.nombre);
             name = String.valueOf(nombre.getText());
+
+            soundPress.start();
 
             if(name.equals("")){
                 Toast.makeText(NombreActivity.this, "Introduce tu nombre",Toast.LENGTH_SHORT).show();

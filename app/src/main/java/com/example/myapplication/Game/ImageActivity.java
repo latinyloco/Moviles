@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,19 +18,16 @@ public class ImageActivity extends AppCompatActivity implements View.OnClickList
 
     LinearLayout imgA, imgB, imgC, imgD;
     Button submitBtn;
-
-    int selectedAnswer;
-
     int score;
     private String name;
-
     boolean correct;
+    private MediaPlayer soundFail, soundCorrect, soundPress;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image);
-
 
         imgA = findViewById(R.id.img_A);
         imgB = findViewById(R.id.img_B);
@@ -41,7 +39,6 @@ public class ImageActivity extends AppCompatActivity implements View.OnClickList
 
         score = this.getIntent().getExtras().getInt("puntos");
         name = this.getIntent().getExtras().getString("nombre");
-        Toast.makeText(ImageActivity.this, score+" "+name,Toast.LENGTH_SHORT).show();
 
         imgA.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,14 +85,24 @@ public class ImageActivity extends AppCompatActivity implements View.OnClickList
         });
 
         submitBtn.setOnClickListener(this);
+
+        musica();
+    }
+
+    private void musica(){
+        soundPress = MediaPlayer.create(this, R.raw.press);
+        soundCorrect = MediaPlayer.create(this, R.raw.correct);
+        soundFail = MediaPlayer.create(this, R.raw.fail);
     }
 
     @Override
     public void onClick(View view) {
         if(correct){
+            soundCorrect.start();
             score+=3;
         }
         else{
+            soundFail.start();
             score-=2;
         }
         endGame();

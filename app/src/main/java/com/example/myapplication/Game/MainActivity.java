@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,8 +24,9 @@ import com.example.myapplication.R;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button bJugar, bEncuesta;
-    private ImageView bPartidas;
-    private ImageView bInfo;
+    private ImageView bInfo, bNosound, bSound, bPartidas;
+
+    private MediaPlayer soundLong, soundPress;
 
     public MainActivity() {
     }
@@ -33,6 +37,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         instancias();
         acciones();
+        musica();
+
+
+    }
+
+    private void musica (){
+        //musica press
+        soundPress = MediaPlayer.create(this, R.raw.press);
+
+        //musica de fondo
+        soundLong = MediaPlayer.create(this, R.raw.sound);
     }
 
 
@@ -43,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         bPartidas = (ImageView) findViewById(R.id.listaPartidas);
         bEncuesta = findViewById(R.id.btnEncuestas);
+        bNosound = (ImageView) findViewById(R.id.nosound);
+        bSound = (ImageView) findViewById(R.id.sound);
     }
 
     private void acciones() {
@@ -51,17 +68,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         bPartidas.setOnClickListener(this);
         bEncuesta.setOnClickListener(this);
+        bNosound.setOnClickListener(this);
+        bSound.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
 
         if (v.getId() == R.id.botonJuego) {
+            soundPress.start();
             Intent intent = new Intent(getApplicationContext(), NombreActivity.class);
             startActivity(intent);
 
 
+
         } else if (v.getId() == R.id.botonInfo) {
+            soundPress.start();
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Esta es una aplicacion de juego tipo trivial." +
                     " Se te van a realizar varias preguntas, si las aciertas se te sumaran puntos," +
@@ -69,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     .setTitle("Información")
                     .setCancelable(false).setNeutralButton("Aceptar",
                             (dialog, id) -> {
+                                soundPress.start();
                                 dialog.cancel();
                             });
             AlertDialog alert = builder.create();
@@ -76,12 +99,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         } else if(v.getId() == R.id.btnEncuestas){
-
+            soundPress.start();
             showCustomDialog();
 
         }else if(v.getId() == R.id.listaPartidas){
+            soundPress.start();
             Intent intent = new Intent(getApplicationContext(), PartidasActivity.class);
             startActivity(intent);
+        }else if(v.getId() == R.id.nosound){
+            soundPress.start();
+            soundLong.pause();
+        }else if(v.getId() == R.id.sound){
+            soundPress.start();
+            soundLong.start();
         }
 
     }
@@ -95,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button btnEnviar = dialog.findViewById(R.id.btnEnviar);
 
         btnEnviar.setOnClickListener(v -> {
+            soundPress.start();
             int selectedId = botonGrupo.getCheckedRadioButtonId();
             if (selectedId != -1) {
                 RadioButton bontonSelecionado = dialog.findViewById(selectedId);

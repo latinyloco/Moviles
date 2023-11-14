@@ -1,5 +1,6 @@
 package com.example.myapplication.Partidas;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,6 +21,7 @@ public class PartidasActivity extends AppCompatActivity {
     private ListView jugadoresPerfil;
     private AdapterPartidas mApapter;
     private ImageView atras;
+    private MediaPlayer soundPress;
 
     protected void onCreate(Bundle savedIntenceState) {
 
@@ -30,6 +32,8 @@ public class PartidasActivity extends AppCompatActivity {
         DbPartidas db = new DbPartidas(this);
         l = db.mostrarPartidas();
 
+        soundPress = MediaPlayer.create(this, R.raw.press);
+
 
         /******* LISTA JUGADORES *******/
         mApapter = new AdapterPartidas(this, R.layout.adapter_partidas,l);
@@ -37,13 +41,12 @@ public class PartidasActivity extends AppCompatActivity {
         jugadoresPerfil.setAdapter(mApapter);
 
 
-
-
         /******* BOTONES *******/
         atras = findViewById(R.id.atras);
         atras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPress.start();
                 onBackPressed();    //volver atrás
             }
         });

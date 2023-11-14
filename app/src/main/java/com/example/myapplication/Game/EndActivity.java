@@ -2,6 +2,7 @@ package com.example.myapplication.Game;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,9 +24,14 @@ public class EndActivity extends AppCompatActivity implements View.OnClickListen
 
     private Button vol, judn;
 
+    private MediaPlayer soundPress, soundSuperwin, soundWin, soundLose;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        musica();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end);
         score = this.getIntent().getExtras().getInt("puntos");     //recoger datos que vienen de otra activity
@@ -35,31 +41,37 @@ public class EndActivity extends AppCompatActivity implements View.OnClickListen
 
 
         if (score < 7.5){
+            soundLose.start();
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Has perdido, intentalo de nuevo")
                     .setTitle("Derrota")
                     .setCancelable(false).setNeutralButton("Aceptar",
                             (dialog, id) -> {
+                                soundPress.start();
                                 dialog.cancel();
                             });
             AlertDialog alert = builder.create();
             alert.show();
         } else if (score >= 7.5 && score < 15) {
+            soundWin.start();
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Felicidades, has ganado")
                     .setTitle("Victoria")
                     .setCancelable(false).setNeutralButton("Aceptar",
                             (dialog, id) -> {
+                                soundPress.start();
                                 dialog.cancel();
                             });
             AlertDialog alert = builder.create();
             alert.show();
         } else if (score == 15) {
+            soundSuperwin.start();
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Enhorabuena!!, has conseguido una puntuacion perfecta")
                     .setTitle("Flawless Victory")
                     .setCancelable(false).setNeutralButton("Aceptar",
                             (dialog, id) -> {
+                                soundPress.start();
                                 dialog.cancel();
                             });
             AlertDialog alert = builder.create();
@@ -74,14 +86,23 @@ public class EndActivity extends AppCompatActivity implements View.OnClickListen
 
     }
 
+    private void musica(){
+        soundPress = MediaPlayer.create(this, R.raw.press);
+        soundSuperwin = MediaPlayer.create(this, R.raw.superwin);
+        soundWin = MediaPlayer.create(this, R.raw.win);
+        soundLose = MediaPlayer.create(this, R.raw.lose);
+    }
+
 
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.volver){
+            soundPress.start();
             saveDB();
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
         }else{
+            soundPress.start();
             saveDB();
             Intent intent = new Intent(getApplicationContext(), JuegoActivity.class);
             startActivity(intent);

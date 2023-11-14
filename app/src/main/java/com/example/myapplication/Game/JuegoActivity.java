@@ -1,6 +1,7 @@
 package com.example.myapplication.Game;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -52,6 +53,8 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
     private Button lastSelectedAnswerButton = null;
     private String name;
 
+    private MediaPlayer soundFail, soundCorrect,soundPress;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +76,14 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
         submitBtn.setOnClickListener(this);
 
         loadNewQuestion();
+
+        musica();
+    }
+
+    private void musica(){
+        soundPress = MediaPlayer.create(this, R.raw.press);
+        soundCorrect = MediaPlayer.create(this, R.raw.correct);
+        soundFail = MediaPlayer.create(this, R.raw.fail);
     }
 
     public void onClick(View view) {
@@ -87,6 +98,7 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
             if (selectedAnswerButton!=null) {
                 if (selectedAnswer.equals(correct[currentQuestionIndex])) {
                     if(currentQuestionIndex+1 < totalQuestion) {
+                        soundCorrect.start();
                         score += 3;
                         selectedAnswerButton.setBackgroundColor(Color.GREEN);
                         correctMessage();
@@ -94,6 +106,7 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
 
                 } else {
                     if(currentQuestionIndex+1 < totalQuestion){
+                        soundFail.start();
                         score -= 2;
                         showCorrect(selectedAnswerButton);
                         errorMessage();
@@ -131,11 +144,13 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
                 .setTitle("Incorrecto")
                 .setCancelable(false)
                 .setPositiveButton("Continuar", (dialog, which) -> {
+                    soundPress.start();
                     if(currentQuestionIndex == totalQuestion ){
                         imgGame();
                     }
                 })
                 .setNegativeButton("Repetir desde el inicio", (dialog, which) -> {
+                    soundPress.start();
                     endQuestions();
                 });
 
@@ -185,6 +200,7 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
     private void lastQuestion(){
         currentQuestionIndex--;
         if (selectedAnswer.equals(correct[currentQuestionIndex])) {
+            soundCorrect.start();
             score += 3;
             correctMessage();
             imgGame();
@@ -192,15 +208,18 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
         } else {
             score -= 2;
             showCorrect(lastSelectedAnswerButton);
+            soundFail.start();
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Has fallado")
                     .setTitle("Incorrecto")
                     .setCancelable(false)
                     .setPositiveButton("Continuar", (dialog, which) -> {
+                        soundPress.start();
                         imgGame();
                     })
                     .setNegativeButton("Repetir desde el inicio", (dialog, which) -> {
+                        soundPress.start();
                         endQuestions();
                     });
 
@@ -215,7 +234,6 @@ public class JuegoActivity extends AppCompatActivity implements View.OnClickList
         intent.putExtra("puntos",score);   //para pasar los puntos de un activity a otro
         intent.putExtra("nombre",name);
 
-        Toast.makeText(JuegoActivity.this, name,Toast.LENGTH_SHORT).show();
         startActivity(intent);
     }
 
