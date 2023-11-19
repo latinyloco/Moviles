@@ -12,10 +12,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.BaseActivity;
 import com.example.myapplication.DB.DbPartidas;
 import com.example.myapplication.R;
 
-public class EndActivity extends AppCompatActivity implements View.OnClickListener {
+public class EndActivity extends BaseActivity implements View.OnClickListener {
 
     private TextView textscore;
 

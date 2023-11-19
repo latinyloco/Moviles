@@ -7,6 +7,7 @@
     android:id="@+id/linearLayout"
     android:background="#423E85">
 
+    <include layout="@layout/toolbar_layout" />
 
     <TextView
         android:id="@+id/textView3"

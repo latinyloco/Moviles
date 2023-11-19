@@ -42,6 +42,9 @@
             android:name=".Game.JuegoActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".BaseActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".Game.MainActivity"
             android:exported="true">
             <intent-filter>

@@ -17,11 +17,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.myapplication.BaseActivity;
 import com.example.myapplication.Partidas.NombreActivity;
 import com.example.myapplication.Partidas.PartidasActivity;
 import com.example.myapplication.R;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private Button bJugar, bEncuesta;
     private ImageView bInfo, bNosound, bSound, bPartidas;

@@ -8,6 +8,7 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.BaseActivity;
 import com.example.myapplication.DB.DbPartidas;
 import com.example.myapplication.DB.Partida;
 import com.example.myapplication.R;
@@ -15,7 +16,7 @@ import com.example.myapplication.R;
 import java.util.ArrayList;
 
 
-public class PartidasActivity extends AppCompatActivity {
+public class PartidasActivity extends BaseActivity {
 
     private ArrayList<Partida> l;
     private ListView jugadoresPerfil;

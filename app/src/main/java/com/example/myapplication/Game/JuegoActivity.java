@@ -13,9 +13,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.BaseActivity;
 import com.example.myapplication.R;
 
-public class JuegoActivity extends AppCompatActivity implements View.OnClickListener{
+public class JuegoActivity extends BaseActivity implements View.OnClickListener{
 
     public static String question[] ={
             "¿De qué color fue el primer Hulk?",

@@ -11,10 +11,11 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.myapplication.BaseActivity;
 import com.example.myapplication.Game.EndActivity;
 import com.example.myapplication.R;
 
-public class ImageActivity extends AppCompatActivity implements View.OnClickListener {
+public class ImageActivity extends BaseActivity implements View.OnClickListener {
 
     LinearLayout imgA, imgB, imgC, imgD;
     Button submitBtn;
