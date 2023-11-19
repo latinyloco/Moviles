@@ -4,7 +4,7 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#8164cc"
+    android:background="#FEFEFF"
     android:theme="?attr/actionBarTheme">
 
     <ImageButton
@@ -12,9 +12,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="?android:selectableItemBackground"
-        android:src="@mipmap/ic_launcher"
         android:contentDescription="@string/home_button_description"
-        android:padding="8dp"/>
+        android:padding="8dp"
+        android:src="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@+id/textoTitulo"
@@ -23,5 +23,5 @@
         android:layout_gravity="center"
         android:text="FRIQUIZ"
         android:textSize="18sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 </androidx.appcompat.widget.Toolbar>

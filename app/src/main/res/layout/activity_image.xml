@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0EA37A"
     android:orientation="vertical"
-    android:background="#423E85"
     android:padding="24dp"
     tools:context=".Game.ImageActivity">
 
@@ -29,45 +29,45 @@
         android:id="@+id/layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_below="@id/question"
-        android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
+        android:orientation="horizontal"
         android:weightSum="2">
 
         <LinearLayout
             android:id="@+id/img_A"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:padding="20dp"
             android:layout_marginEnd="5dp"
+            android:layout_weight="1"
             android:background="@drawable/round_back_white10"
-            android:orientation="vertical">
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="20dp">
 
             <ImageView
                 android:layout_width="120dp"
                 android:layout_height="100dp"
-                android:src="@drawable/img1"/>
+                android:src="@drawable/img1" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/img_B"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:padding="20dp"
             android:layout_marginStart="5dp"
+            android:layout_weight="1"
             android:background="@drawable/round_back_white10"
-            android:orientation="vertical">
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="20dp">
 
             <ImageView
                 android:layout_width="120dp"
                 android:layout_height="100dp"
-                android:src="@drawable/img2"/>
+                android:src="@drawable/img2" />
         </LinearLayout>
 
     </LinearLayout>
@@ -76,45 +76,45 @@
         android:id="@+id/layout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_below="@id/layout1"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
+        android:orientation="horizontal"
         android:weightSum="2">
 
         <LinearLayout
             android:id="@+id/img_C"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:padding="20dp"
             android:layout_marginEnd="5dp"
+            android:layout_weight="1"
             android:background="@drawable/round_back_white10"
-            android:orientation="vertical">
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="20dp">
 
             <ImageView
                 android:layout_width="120dp"
                 android:layout_height="100dp"
-                android:src="@drawable/img3"/>
+                android:src="@drawable/img3" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/img_D"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:padding="20dp"
             android:layout_marginStart="5dp"
+            android:layout_weight="1"
             android:background="@drawable/round_back_white10"
-            android:orientation="vertical">
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="20dp">
 
             <ImageView
                 android:layout_width="120dp"
                 android:layout_height="100dp"
-                android:src="@drawable/img4"/>
+                android:src="@drawable/img4" />
         </LinearLayout>
 
     </LinearLayout>
@@ -125,6 +125,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/layout2"
         android:layout_marginTop="40dp"
-        android:text="Continuar" />
+        android:backgroundTint="#ABCFC5"
+        android:text="Continuar"
+        android:textColor="#2C2929" />
 
 </RelativeLayout>

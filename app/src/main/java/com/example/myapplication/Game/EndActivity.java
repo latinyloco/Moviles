@@ -10,10 +10,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myapplication.BaseActivity;
 import com.example.myapplication.DB.DbPartidas;
+import com.example.myapplication.Partidas.NombreActivity;
 import com.example.myapplication.R;
 
 public class EndActivity extends BaseActivity implements View.OnClickListener {
@@ -105,7 +104,7 @@ public class EndActivity extends BaseActivity implements View.OnClickListener {
         }else{
             soundPress.start();
             saveDB();
-            Intent intent = new Intent(getApplicationContext(), JuegoActivity.class);
+            Intent intent = new Intent(getApplicationContext(), NombreActivity.class);
             startActivity(intent);
         }
     }

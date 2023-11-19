@@ -42,7 +42,7 @@
             android:name=".Game.JuegoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".BaseActivity"
+            android:name=".Game.BaseActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Game.MainActivity"

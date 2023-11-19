@@ -6,9 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.myapplication.BaseActivity;
+import com.example.myapplication.Game.BaseActivity;
 import com.example.myapplication.DB.DbPartidas;
 import com.example.myapplication.DB.Partida;
 import com.example.myapplication.R;

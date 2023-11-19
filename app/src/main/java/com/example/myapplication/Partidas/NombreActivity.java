@@ -9,9 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.myapplication.BaseActivity;
+import com.example.myapplication.Game.BaseActivity;
 import com.example.myapplication.Game.JuegoActivity;
 import com.example.myapplication.R;
 

@@ -1,7 +1,5 @@
 package com.example.myapplication.Game;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
@@ -9,10 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import com.example.myapplication.BaseActivity;
-import com.example.myapplication.Game.EndActivity;
 import com.example.myapplication.R;
 
 public class ImageActivity extends BaseActivity implements View.OnClickListener {

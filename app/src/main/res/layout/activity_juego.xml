@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#423E85"
+    android:background="#0EA37A"
     android:padding="24dp"
     tools:context=".Game.MainActivity">>
 
@@ -76,6 +76,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/choices_layout"
         android:layout_marginTop="40dp"
-        android:text="Continuar" />
+        android:backgroundTint="#ABCFC5"
+        android:text="Continuar"
+        android:textColor="#2C2929" />
 
 </RelativeLayout>

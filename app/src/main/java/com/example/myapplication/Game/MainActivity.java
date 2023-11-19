@@ -1,23 +1,18 @@
 package com.example.myapplication.Game;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.example.myapplication.BaseActivity;
 import com.example.myapplication.Partidas.NombreActivity;
 import com.example.myapplication.Partidas.PartidasActivity;
 import com.example.myapplication.R;

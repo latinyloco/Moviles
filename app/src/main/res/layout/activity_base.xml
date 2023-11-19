@@ -3,9 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".BaseActivity">
+    tools:context=".Game.BaseActivity">
 
-    <include layout="@layout/toolbar_layout" />
+    <include
+        layout="@layout/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
 
     <FrameLayout
         android:id="@+id/container"
