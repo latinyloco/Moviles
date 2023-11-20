@@ -7,7 +7,7 @@
     android:background="#FEFEFF"
     android:theme="?attr/actionBarTheme">
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btnHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

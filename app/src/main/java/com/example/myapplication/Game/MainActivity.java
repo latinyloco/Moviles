@@ -34,8 +34,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         instancias();
         acciones();
         musica();
-
-
     }
 
     private void musica (){

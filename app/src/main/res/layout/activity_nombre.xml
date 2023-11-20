@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:background="#0EA37A">
 
+    <include layout="@layout/activity_base" />
     <include layout="@layout/toolbar_layout" />
 
     <TextView

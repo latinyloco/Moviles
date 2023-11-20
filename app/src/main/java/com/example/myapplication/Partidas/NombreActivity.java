@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.myapplication.Game.BaseActivity;
 import com.example.myapplication.Game.JuegoActivity;
+import com.example.myapplication.Game.MainActivity;
 import com.example.myapplication.R;
 
 public class NombreActivity extends BaseActivity implements View.OnClickListener{
@@ -49,6 +50,10 @@ public class NombreActivity extends BaseActivity implements View.OnClickListener
                 intent.putExtra("nombre",name);   //para pasar los puntos de un activity a otro
                 startActivity(intent);
             }
+        }
+        else if(v.getId() == R.id.btnHome){
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
         }
     }
 }

@@ -59,7 +59,6 @@ public class JuegoActivity extends BaseActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego);
         name = this.getIntent().getExtras().getString("nombre");     //recoger datos que vienen de otra activity
-        Toast.makeText(JuegoActivity.this, name,Toast.LENGTH_SHORT).show();
 
         questionTextView = findViewById(R.id.question);
         ansA = findViewById(R.id.ans_A);
@@ -114,21 +113,26 @@ public class JuegoActivity extends BaseActivity implements View.OnClickListener{
                     }
 
                 }
-            }
-            currentQuestionIndex++;
-            selectedAnswerButton = null;
 
-            // Agregar una pausa antes de cargar una nueva pregunta
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    ansA.setBackgroundColor(Color.WHITE);
-                    ansB.setBackgroundColor(Color.WHITE);
-                    ansC.setBackgroundColor(Color.WHITE);
-                    ansD.setBackgroundColor(Color.WHITE);
-                    loadNewQuestion();
-                }
-            }, 500);
+                currentQuestionIndex++;
+                selectedAnswerButton = null;
+
+                // Agregar una pausa antes de cargar una nueva pregunta
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ansA.setBackgroundColor(Color.WHITE);
+                        ansB.setBackgroundColor(Color.WHITE);
+                        ansC.setBackgroundColor(Color.WHITE);
+                        ansD.setBackgroundColor(Color.WHITE);
+                        loadNewQuestion();
+                    }
+                }, 500);
+            }else{
+                Toast.makeText(this, "Selecciona una opción", Toast.LENGTH_SHORT).show();
+            }
+
+
         }else{
             //choices button clicked
             selectedAnswer  = clickedButton.getText().toString();

@@ -15,11 +15,9 @@ import com.example.myapplication.Game.MainActivity;
 import com.example.myapplication.Partidas.PartidasActivity;
 import com.example.myapplication.R;
 
-public class BaseActivity extends AppCompatActivity implements View.OnClickListener {
+public class BaseActivity extends AppCompatActivity{
 
     Toolbar toolbar;
-    ImageButton btnHome;
-    TextView textoTitulo;
 
 
     @Override
@@ -27,27 +25,12 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
         instancias();
-        acciones();
+
     }
+
 
     private void instancias() {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        btnHome = findViewById(R.id.btnHome);
-        textoTitulo = findViewById(R.id.textoTitulo);
-    }
-
-    private void acciones(){
-        btnHome.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        Log.d("BaseActivity", "Click en btnHome"); // Agrega este log
-        if (v.getId() == R.id.btnHome){
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-        }
     }
 }
